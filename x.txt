@@ -1,0 +1,4 @@
+result * {?}
+quit
+result * {?}
+quit
