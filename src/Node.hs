@@ -1,5 +1,6 @@
 module Node where
 import CData
+import Data.List
 data Node = Root {
   b :: String, 
   s :: Int
@@ -7,11 +8,15 @@ data Node = Root {
 
 gen_all n = concat $ map (gen n) [0..119]
 
-gen n x = let 
-  g=[]
-  y=(fromIntegral x::Int) 
-  c=(b n)!!y in 
-  if c=='P' then (x,(x+up)):g else g
+gen n x
+  | c=='P' = (x,(x+up)):g 
+  | otherwise = g
+  where 
+    g=[]
+    c=genericIndex (b n) x 
+
+--pawn n x = 
+
 
 
 
