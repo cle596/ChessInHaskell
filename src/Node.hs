@@ -8,14 +8,17 @@ data Node = Root {
 
 gen_all n = concat $ map (gen n) [0..119]
 
-gen n x
-  | c=='P' = (x,(x+up)):g 
-  | otherwise = g
-  where 
-    g=[]
-    c=genericIndex (b n) x 
+(!)::Integral b=>[a]->b->a 
+(!) a b = genericIndex a b
 
---pawn n x = 
+gen n x
+  | c=='P' = pawn n x
+  | otherwise = []
+  where 
+    c=(b n)!x 
+
+pawn n x = (x,(x+up)):[]
+  
 
 
 
