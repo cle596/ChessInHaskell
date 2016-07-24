@@ -9,3 +9,4 @@ root = Root
 main = do
   putStrLn $ pretty $ b root
   putStrLn $ pretty $ rot $ b root
+  print $ gen_all root
