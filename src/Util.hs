@@ -12,7 +12,7 @@ test x
 
 pad x = replicate 19 ' ' ++ "\n" ++
   intercalate "" (map (\x->" "++x++"\n") (splitOn "\n" x)) ++
-  replicate 9 ' ' ++ "\n" ++ replicate 10 ' '
+  replicate 20 ' '
 
 unpad x = intercalate "\n" $ map (\x->(take 8 (drop 1 x))) (take 8 (drop 1 (splitOn "\n" x)))
 
