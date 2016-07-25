@@ -31,5 +31,8 @@ rot x = map
 trans x = let 
   m = mod x 10
   d = x-m
-  h = Bimap.lookupR m trans_hash
-  in fromJust h
+  l = fromJust $ Bimap.lookupR m trans_hash
+  r = fromJust $ Bimap.lookupR d trans_hash
+  in [l,r]
+
+ttrans x = trans (fst x) ++ trans (snd x)

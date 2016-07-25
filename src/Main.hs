@@ -9,5 +9,4 @@ root = Root
 
 main = do
   putStrLn $ pretty $ b root
-  print $ gen_all root
-  print $ trans 61
+  print $ map ttrans $ gen_all root
