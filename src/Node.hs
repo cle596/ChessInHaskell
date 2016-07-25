@@ -2,6 +2,8 @@ module Node where
 import CData
 import Data.List
 import Data.Char
+import Data.Maybe
+import qualified Data.HashMap as Map
 data Node = Root {
   t :: Bool,
   b :: String, 
@@ -60,10 +62,12 @@ update n m = let
   s = snd m
   in map (\x->if x==f then '.' else if x==s then (b n)!f else (b n)!x) [0..119]
 
-{- 
 score n = let 
   bo = (b n)
-  in map (\x->if elem bo!x pieces then  else 0) [0..119]
--}
+  in sum $ map (\x->if elem (bo!x) pieces then sco (bo!x) x else 0) [0..119]
 
+sco c x = let
+  mat = m $ fromJust $ Map.lookup c score_hash
+  pst = (p $ fromJust $ Map.lookup c score_hash)!!x
+  in mat+pst
 

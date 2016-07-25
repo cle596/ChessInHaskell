@@ -21,6 +21,13 @@
   (major1) == 0 && (major2) <  3 || \
   (major1) == 0 && (major2) == 3 && (minor) <= 2)
 
+/* package hashmap-1.3.1.1 */
+#define VERSION_hashmap "1.3.1.1"
+#define MIN_VERSION_hashmap(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  3 || \
+  (major1) == 1 && (major2) == 3 && (minor) <= 1)
+
 /* package split-0.2.3.1 */
 #define VERSION_split "0.2.3.1"
 #define MIN_VERSION_split(major1,major2,minor) (\
@@ -84,5 +91,5 @@
   (major1) == 2 && (major2) <  26 || \
   (major1) == 2 && (major2) == 26 && (minor) <= 0)
 
-#define CURRENT_PACKAGE_KEY "cguih_EHYNf1gdObo5felr9FanJq"
+#define CURRENT_PACKAGE_KEY "cguih_BK4UcagmrIl7DNkGB1M0sA"
 

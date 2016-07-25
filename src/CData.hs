@@ -1,6 +1,7 @@
 module CData where
 
 import Data.List.Utils
+import qualified Data.HashMap as Map
 import qualified Data.Bimap        as Bimap
 
 up = -10
@@ -122,3 +123,33 @@ trans_hash = Bimap.fromList[
   ]
 
 init_pawn = [81..88]
+
+data Points = PTS {
+  m :: Integer,
+  p :: [Integer]
+  }
+
+pieces = ['P','N','B','R','Q','K',
+  'p','n','b','r','q','k']
+
+score_hash = Map.fromList[
+  ('P',PTS 100 pawn_pst),
+  ('N',PTS 320 knight_pst),
+  ('B',PTS 330 bishop_pst),
+  ('R',PTS 500 rook_pst),
+  ('Q',PTS 900 queen_pst),
+  ('K',PTS 20000 king_pst),
+  ('p',PTS (-100) (rot_pst pawn_pst)),
+  ('n',PTS (-320) (rot_pst knight_pst)),
+  ('b',PTS (-330) (rot_pst bishop_pst)),
+  ('r',PTS (-500) (rot_pst rook_pst)),
+  ('q',PTS (-900) (rot_pst queen_pst)),
+  ('k',PTS (-20000) (rot_pst king_pst))
+  ]
+
+rot_pst x = map 
+  (\y->let 
+    a=(11-(div y 10))*10
+    b=mod y 10
+    in -(x!!(a+b))) 
+  [0..119]
