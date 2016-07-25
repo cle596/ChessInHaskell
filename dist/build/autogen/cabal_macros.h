@@ -14,6 +14,13 @@
   (major1) == 4 && (major2) <  8 || \
   (major1) == 4 && (major2) == 8 && (minor) <= 2)
 
+/* package bimap-0.3.2 */
+#define VERSION_bimap "0.3.2"
+#define MIN_VERSION_bimap(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  3 || \
+  (major1) == 0 && (major2) == 3 && (minor) <= 2)
+
 /* package split-0.2.3.1 */
 #define VERSION_split "0.2.3.1"
 #define MIN_VERSION_split(major1,major2,minor) (\
@@ -77,5 +84,5 @@
   (major1) == 2 && (major2) <  26 || \
   (major1) == 2 && (major2) == 26 && (minor) <= 0)
 
-#define CURRENT_PACKAGE_KEY "cguih_HR0v3XPHsW8ExyaE1wLT3h"
+#define CURRENT_PACKAGE_KEY "cguih_EHYNf1gdObo5felr9FanJq"
 

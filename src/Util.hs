@@ -3,6 +3,9 @@ module Util where
 import Data.List.Split
 import Data.Char 
 import Data.List
+import CData
+import Data.Maybe
+import qualified Data.Bimap        as Bimap
 
 parse_fen x = pad $ intercalate "\n" $ map make_line $ splitOn "/" x
 make_line x = intercalate "" $ map test x
@@ -24,3 +27,9 @@ rot x = map
     let r=x!!(((11-(div y 10))*10)+(9-(mod y 10)))
     in if r=='\n' then ' ' else r) 
   [0..119]
+
+trans x = let 
+  m = mod x 10
+  d = x-m
+  h = Bimap.lookupR m trans_hash
+  in fromJust h

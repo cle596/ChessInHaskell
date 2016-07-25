@@ -1,6 +1,7 @@
 module CData where
 
 import Data.List.Utils
+import qualified Data.Bimap        as Bimap
 
 up = -10
 down = 10
@@ -111,4 +112,11 @@ king_pst = [
   0, 20, 30, 10,  0,  0, 10, 30, 20,  0,
   0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
   0,  0,  0,  0,  0,  0,  0,  0,  0,  0
+  ]
+
+trans_hash = Bimap.fromList[
+  ('a', 1), ('b', 2), ('c', 3),('d',4),
+  ('e', 5), ('f', 6), ('g', 7),('h',8),
+  ('1', 90), ('2', 80), ('3', 70),('4',60),
+  ('5', 50), ('6', 40), ('7', 30),('8',20)
   ]

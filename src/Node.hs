@@ -18,6 +18,7 @@ foeOrDot n x = foe n x || (b n)!x=='.'
 gen n x
   | c=='P' = pawn n x
   | c=='N' = knight n x
+  | c=='K' = king n x
   | otherwise = []
   where 
     c=(b n)!x 
@@ -34,6 +35,10 @@ pawn n x = let
 knight n x = let
   bo = (b n)
   in filter (\x->x/=(0,0)) [if foeOrDot n (x+v) then (x,x+v) else (0,0)|v<-nvec]
+
+king n x = let
+  bo = (b n)
+  in filter (\x->x/=(0,0)) [if foeOrDot n (x+v) then (x,x+v) else (0,0)|v<-qvec]
 
 
 
