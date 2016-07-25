@@ -1,7 +1,6 @@
 module Node where
 import CData
 import Data.List
-import Data.List.Utils
 import Data.Char
 data Node = Root {
   t :: Bool,
@@ -36,7 +35,7 @@ pawn n x = let
     else []
   leftside = if foe n (x+up+left) || cmp (e n) (x+up+left) then [(x,(x+up+left))] else []
   rightside = if foe n (x+up+right) || cmp (e n) (x+up+right) then [(x,(x+up+right))] else []
-  in merge upside $ merge leftside rightside
+  in upside++leftside++rightside
 
 knight n x = let
   bo = (b n)
