@@ -13,9 +13,11 @@ gen_all n = concat $ map (gen n) [0..119]
 
 (!) a b = genericIndex a b
 foe n x = if (t n) then isLower ((b n)!x) else isUpper ((b n)!x)
+foeOrDot n x = foe n x || (b n)!x=='.'
 
 gen n x
   | c=='P' = pawn n x
+  | c=='N' = knight n x
   | otherwise = []
   where 
     c=(b n)!x 
@@ -29,9 +31,9 @@ pawn n x = let
   rightside = if foe n (x+up+right) then [(x,(x+up+right))] else []
   in merge upside $ merge leftside rightside
 
-    
-  
-
+knight n x = let
+  bo = (b n)
+  in filter (\x->x/=(0,0)) [if foeOrDot n (x+v) then (x,x+v) else (0,0)|v<-nvec]
 
 
 
