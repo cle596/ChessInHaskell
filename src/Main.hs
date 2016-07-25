@@ -3,6 +3,7 @@ import Search
 import Util
 
 root = Root 
+  True
   (parse_fen "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR") 
   0
 
