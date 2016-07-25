@@ -36,6 +36,10 @@ knight n x = let
   bo = (b n)
   in filter (\x->x/=(0,0)) [if foeOrDot n (x+v) then (x,x+v) else (0,0)|v<-nvec]
 
+bishop n x = let
+  bo = (b n)
+  in map (\y->(x,y)) $ takeWhile (\y->foeOrDot n y) (map (\v->x+v) bvec)
+
 king n x = let
   bo = (b n)
   in filter (\x->x/=(0,0)) [if foeOrDot n (x+v) then (x,x+v) else (0,0)|v<-qvec]
