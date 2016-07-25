@@ -18,6 +18,9 @@ foeOrDot n x = foe n x || (b n)!x=='.'
 gen n x
   | c=='P' = pawn n x
   | c=='N' = knight n x
+  | c=='B' = bishop n x bvec
+  | c=='R' = bishop n x rvec
+  | c=='Q' = bishop n x qvec
   | c=='K' = king n x
   | otherwise = []
   where 
@@ -36,9 +39,9 @@ knight n x = let
   bo = (b n)
   in filter (\x->x/=(0,0)) [if foeOrDot n (x+v) then (x,x+v) else (0,0)|v<-nvec]
 
-bishop n x = let
+bishop n x vc = let
   bo = (b n)
-  in map (\y->(x,y)) $ takeWhile (\y->foeOrDot n y) (map (\v->x+v) bvec)
+  in map (\y->(x,y)) $ takeWhile (\y->foeOrDot n y) (map (\v->x+v) vc)
 
 king n x = let
   bo = (b n)
