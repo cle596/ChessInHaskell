@@ -10,7 +10,7 @@ loop n = do
   let g = gen_all n
   print $ map ttrans $ g
   i <- getLine
-  putStrLn $ if elem (rrtrans i) g then "yep" else "no"
+  if elem (rrtrans i) g then loop n{b=rot $ update n (rrtrans i)} else putStrLn "no"
 
 main = do
   loop root

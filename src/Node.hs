@@ -55,5 +55,10 @@ king n x = let
   bo = (b n)
   in filter (\x->x/=(0,0)) [if foeOrDot n (x+v) then (x,x+v) else (0,0)|v<-qvec]
 
+update n m = let
+  f = fst m
+  s = snd m
+  in map (\x->if x==f then '.' else if x==s then (b n)!f else (b n)!x) [0..119]
+
 
 

@@ -25,8 +25,10 @@ pretty x = intercalate " " $ splitOn "" x
 rot x = map 
   (\y->if x!!y=='\n' then x!!y else
     let r=x!!(((11-(div y 10))*10)+(9-(mod y 10)))
-    in if r=='\n' then ' ' else r) 
+    in if r=='\n' then ' ' else flop r) 
   [0..119]
+
+flop x = if isAlpha x then if isUpper x then toLower x else toUpper x else x
 
 trans x = let 
   m = mod x 10
