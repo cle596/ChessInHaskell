@@ -6,21 +6,24 @@ import Data.Char
 data Node = Root {
   t :: Bool,
   b :: String, 
-  s :: Int
+  s :: Int,
+  e :: Int
   }
 
 gen_all n = concat $ map (gen n) [0..119]
 
 (!) a b = genericIndex a b
-foe n x = if (t n) then isLower ((b n)!x) else isUpper ((b n)!x)
+cmp a b = fromIntegral a == fromIntegral b 
+foe n x = isLower ((b n)!x)
+dot n x = (b n)!x == '.'
 foeOrDot n x = foe n x || (b n)!x=='.'
 
 gen n x
   | c=='P' = pawn n x
   | c=='N' = knight n x
-  | c=='B' = bishop n x bvec
-  | c=='R' = bishop n x rvec
-  | c=='Q' = bishop n x qvec
+  | c=='B' = brq n x bvec
+  | c=='R' = brq n x rvec
+  | c=='Q' = brq n x qvec
   | c=='K' = king n x
   | otherwise = []
   where 
@@ -29,19 +32,25 @@ gen n x
 pawn n x = let 
   bo =(b n)
   upside = if bo!(x+up)=='.' then 
-    if bo!(x+2*up)=='.'then [(x,(x+2*up)),(x,(x+up))] else [(x,(x+up))] 
+    if bo!(x+2*up)=='.' && elem x init_pawn then [(x,(x+2*up)),(x,(x+up))] else [(x,(x+up))] 
     else []
-  leftside = if (foe n (x+up+left)) then [(x,(x+up+left))] else []
-  rightside = if foe n (x+up+right) then [(x,(x+up+right))] else []
+  leftside = if foe n (x+up+left) || cmp (e n) (x+up+left) then [(x,(x+up+left))] else []
+  rightside = if foe n (x+up+right) || cmp (e n) (x+up+right) then [(x,(x+up+right))] else []
   in merge upside $ merge leftside rightside
 
 knight n x = let
   bo = (b n)
   in filter (\x->x/=(0,0)) [if foeOrDot n (x+v) then (x,x+v) else (0,0)|v<-nvec]
 
-bishop n x vc = let
-  bo = (b n)
-  in map (\y->(x,y)) $ takeWhile (\y->foeOrDot n y) (map (\v->x+v) vc)
+map_vc n x vc = map (\v->tkln n x v) vc
+tkln n x v = let 
+  lst = tk n x v
+  la = if length lst>0 then last lst else 0
+  in if length lst>0 && foe n (la+v) then lst++[la+v] else lst
+tk n x v = takeWhile (\z->dot n z) $ map_scale n x v
+map_scale n x v = map (\k->x+k*v) [1..7]
+
+brq n x vc = map (\y->(x,y)) $ concat $ map_vc n x vc
 
 king n x = let
   bo = (b n)
