@@ -60,5 +60,10 @@ update n m = let
   s = snd m
   in map (\x->if x==f then '.' else if x==s then (b n)!f else (b n)!x) [0..119]
 
+{- 
+score n = let 
+  bo = (b n)
+  in map (\x->if elem bo!x pieces then  else 0) [0..119]
+-}
 
 
