@@ -153,3 +153,5 @@ rot_pst x = map
     b=mod y 10
     in -(x!!(a+b))) 
   [0..119]
+
+end = 20000

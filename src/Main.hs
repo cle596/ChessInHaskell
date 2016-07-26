@@ -13,7 +13,8 @@ loop n = do
   print $ map ttrans $ g
   putStr "score: "
   print $ score n
-  print $ ab 4 0 n 
+  --print $ ab 4 0 n 
+  print $ frame end (negate end) 2 n
   i <- getLine
   if elem (rrtrans i) g then loop (update n (rrtrans i)) else putStrLn "no"
 
