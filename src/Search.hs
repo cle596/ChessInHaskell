@@ -16,15 +16,15 @@ frame u l d n
   | u>l = let 
     cg = ab d g n
     in if cg==g then frame u g d n else frame g l d n 
-  where g = div (u+l+1) 2
+  where g = div (u+l) 2
 
 frameio u l d n
-  | u<=l = print (u,l)
+  | u<=l+1 = print (u,l,g)
   | u>l = do
-      print (u,l)
+      print (u,l,g)
       let cg = ab d g n
       if cg==g then frameio u g d n else frameio g l d n 
-  where g = div (u+l+2) 2
+  where g = div (u+l) 2
 
 ---}
 
