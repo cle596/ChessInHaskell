@@ -60,7 +60,7 @@ king n x = let
 update n m = let
   f = fst m
   s = snd m
-  in map (\x->if x==f then '.' else if x==s then (b n)!f else (b n)!x) [0..119]
+  in n {b=map (\x->if x==f then '.' else if x==s then (b n)!f else (b n)!x) [0..119]}
 
 score n = let 
   bo = (b n)
