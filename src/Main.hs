@@ -15,7 +15,7 @@ loop n = do
   print $ score n
   --print $ ab 4 0 n 
   --print $ frame end (negate end) 2 n
-  frameio end (negate end) 4 n
+  frameio end (negate end) 4 n "null"
   i <- getLine
   if elem (rrtrans i) g then loop (update n (rrtrans i)) else putStrLn "no"
 
