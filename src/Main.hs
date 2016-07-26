@@ -5,7 +5,7 @@ import CData
 import qualified Data.HashMap as Map
 import Data.Maybe
 
-root = Root True (parse_fen "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR") 0
+root = Root True (parse_fen "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR") (0,0) 0
 
 loop n = do
   putStrLn $ pretty $ board n
@@ -15,7 +15,7 @@ loop n = do
   print $ score n
   --print $ ab 4 0 n 
   --print $ frame end (negate end) 2 n
-  frameio end (negate end) 2 n
+  frameio end (negate end) 4 n
   i <- getLine
   if elem (rrtrans i) g then loop (update n (rrtrans i)) else putStrLn "no"
 
