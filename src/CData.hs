@@ -125,8 +125,8 @@ trans_hash = Bimap.fromList[
 init_pawn = [81..88]
 
 data Points = PTS {
-  m :: Integer,
-  p :: [Integer]
+  mat :: Integer,
+  pst :: [Integer]
   }
 
 pieces = ['P','N','B','R','Q','K',

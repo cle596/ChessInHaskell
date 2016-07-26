@@ -5,19 +5,18 @@ import Data.Char
 import Data.Maybe
 import qualified Data.HashMap as Map
 data Node = Root {
-  t :: Bool,
-  b :: String, 
-  s :: Int,
-  e :: Int
+  turn :: Bool,
+  board :: String, 
+  ep :: Int
   }
 
 gen_all n = concat $ map (gen n) [0..119]
 
 (!) a b = genericIndex a b
 cmp a b = fromIntegral a == fromIntegral b 
-foe n x = isLower ((b n)!x)
-dot n x = (b n)!x == '.'
-foeOrDot n x = foe n x || (b n)!x=='.'
+foe n x = isLower ((board n)!x)
+dot n x = (board n)!x == '.'
+foeOrDot n x = foe n x || (board n)!x=='.'
 
 gen n x
   | c=='P' = pawn n x
@@ -28,19 +27,19 @@ gen n x
   | c=='K' = king n x
   | otherwise = []
   where 
-    c=(b n)!x 
+    c=(board n)!x 
 
 pawn n x = let 
-  bo =(b n)
+  bo =(board n)
   upside = if bo!(x+up)=='.' then 
     if bo!(x+2*up)=='.' && elem x init_pawn then [(x,(x+2*up)),(x,(x+up))] else [(x,(x+up))] 
     else []
-  leftside = if foe n (x+up+left) || cmp (e n) (x+up+left) then [(x,(x+up+left))] else []
-  rightside = if foe n (x+up+right) || cmp (e n) (x+up+right) then [(x,(x+up+right))] else []
+  leftside = if foe n (x+up+left) || cmp (ep n) (x+up+left) then [(x,(x+up+left))] else []
+  rightside = if foe n (x+up+right) || cmp (ep n) (x+up+right) then [(x,(x+up+right))] else []
   in upside++leftside++rightside
 
 knight n x = let
-  bo = (b n)
+  bo = (board n)
   in filter (\x->x/=(0,0)) [if foeOrDot n (x+v) then (x,x+v) else (0,0)|v<-nvec]
 
 map_vc n x vc = map (\v->tkln n x v) vc
@@ -54,20 +53,20 @@ map_scale n x v = map (\k->x+k*v) [1..7]
 brq n x vc = map (\y->(x,y)) $ concat $ map_vc n x vc
 
 king n x = let
-  bo = (b n)
+  bo = (board n)
   in filter (\x->x/=(0,0)) [if foeOrDot n (x+v) then (x,x+v) else (0,0)|v<-qvec]
 
 update n m = let
   f = fst m
   s = snd m
-  in n {b=map (\x->if x==f then '.' else if x==s then (b n)!f else (b n)!x) [0..119]}
+  in n {board=map (\x->if x==f then '.' else if x==s then (board n)!f else (board n)!x) [0..119]}
 
 score n = let 
-  bo = (b n)
+  bo = (board n)
   in sum $ map (\x->if elem (bo!x) pieces then sco (bo!x) x else 0) [0..119]
 
 sco c x = let
-  mat = m $ fromJust $ Map.lookup c score_hash
-  pst = (p $ fromJust $ Map.lookup c score_hash)!!x
-  in mat+pst
+  mat_s = mat $ fromJust $ Map.lookup c score_hash
+  pst_s = (pst $ fromJust $ Map.lookup c score_hash)!!x
+  in mat_s+pst_s
 
