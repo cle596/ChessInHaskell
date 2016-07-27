@@ -42,6 +42,6 @@ ttrans x = trans (fst x) ++ trans (snd x)
 rtrans x = sum $ map (\x->fromJust $ Bimap.lookup x trans_hash) x 
 rrtrans x = ((rtrans $ take 2 x), (rtrans $ drop 2 x))
 
-pieces = ['P','N','B','R','Q','K']
+--pieces = ['P','N','B','R','Q','K']
 
 pprint_pst x = mapM_ print $ chunksOf 10 x

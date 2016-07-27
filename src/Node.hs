@@ -3,6 +3,7 @@ import CData
 import Data.List
 import Data.Char
 import Data.Maybe
+import Util
 import qualified Data.HashMap as Map
 data Node = Root {
   turn :: Bool,
@@ -60,7 +61,7 @@ king n x = let
 update n m = let
   f = fst m
   s = snd m
-  in n {board=map (\x->if x==f then '.' else if x==s then (board n)!f else (board n)!x) [0..119],
+  in n {board=rot $ map (\x->if x==f then '.' else if x==s then (board n)!f else (board n)!x) [0..119],
   move=m}
 
 score n = let 
