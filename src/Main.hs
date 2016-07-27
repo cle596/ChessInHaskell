@@ -16,7 +16,7 @@ loop n = do
   --print $ ab 4 0 n 
   --let bm = frame end (negate end) 4 n "null"
   --print bm
-  frameio end (negate end) 4 n "null"
+  frameio end (negate end) 5 n "null"
   i <- getLine
   if elem (rrtrans i) g then loop (update n (rrtrans i)) else putStrLn "no"
 
