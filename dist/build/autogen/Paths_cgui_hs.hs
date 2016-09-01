@@ -17,8 +17,8 @@ version = Version [0,1,0,0] []
 bindir, libdir, datadir, libexecdir, sysconfdir :: FilePath
 
 bindir     = "/home/ch/.cabal/bin"
-libdir     = "/home/ch/.cabal/lib/i386-linux-ghc-7.10.3/cgui-hs-0.1.0.0-BK4UcagmrIl7DNkGB1M0sA"
-datadir    = "/home/ch/.cabal/share/i386-linux-ghc-7.10.3/cgui-hs-0.1.0.0"
+libdir     = "/home/ch/.cabal/lib/x86_64-linux-ghc-7.10.3/cgui-hs-0.1.0.0-Jzsh9gOnHrQ10ZUYk5sdZm"
+datadir    = "/home/ch/.cabal/share/x86_64-linux-ghc-7.10.3/cgui-hs-0.1.0.0"
 libexecdir = "/home/ch/.cabal/libexec"
 sysconfdir = "/home/ch/.cabal/etc"
 
